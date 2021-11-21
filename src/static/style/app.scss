@@ -1,10 +1,4 @@
-@import "@/static/style/common.scss";
-$color-body: red;
-
-body {
-  background-color: $color-body;
-}
-
-.test {
-  display: flex;
-}
+@import "./var.scss";
+@import "./font.scss";
+@import "./flex.scss";
+@import "./common.scss";

@@ -1,6 +1,14 @@
 import React from 'react'
-import ReactDom from 'react-dom'
-import './static/style/app.scss'
-import '@/helper'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { renderRoutes } from '@/helper/router'
+import routes from '@/config/router'
+import '@/plugin/ajax'
+import '@/static/style/app.scss'
 
-ReactDom.render(<div>Hello React!</div>, document.getElementById('root'))
+ReactDOM.render(
+  <BrowserRouter>
+    {renderRoutes(routes)}
+  </BrowserRouter>,
+  document.getElementById('root')
+)
