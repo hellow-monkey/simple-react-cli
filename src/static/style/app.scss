@@ -1,0 +1,10 @@
+@import "@/static/style/common.scss";
+$color-body: red;
+
+body {
+  background-color: $color-body;
+}
+
+.test {
+  display: flex;
+}
