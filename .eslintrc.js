@@ -17,7 +17,10 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [],
-  rules: {},
+  rules: {
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off'
+  },
   settings: {
     'import/resolver': {
       webpack: {
