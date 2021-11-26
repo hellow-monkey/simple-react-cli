@@ -14,7 +14,7 @@ module.exports = {
       selectorBlackList: [],
       minPixelValue: 1,
       mediaQuery: false,
-      replace: false,
+      replace: true,
       exclude: undefined,
       include: undefined,
       landscape: false,

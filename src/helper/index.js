@@ -198,3 +198,15 @@ export const concealStr = (str = "", firstLength = 3, lastLength = 4) => {
   const repeatStr = "*".repeat(str.length - firstLength - lastLength);
   return String(str).trim().replace(reg, `$1${repeatStr}$2`);
 };
+
+// className处理
+export const classFilter = (...cls) => {
+  return Array.from(cls)
+    .map((v) =>
+      String(v)
+        .split(" ")
+        .filter((v) => !!v)
+        .join(" ")
+    )
+    .join(" ");
+};

@@ -1,4 +1,127 @@
-@import "./var.scss";
-@import "./font.scss";
-@import "./flex.scss";
-@import "./common.scss";
+@import "./var.less";
+@import "./font.less";
+@import "./flex.less";
+@import "./common.less";
+
+@border-color: #6ca9f3;
+
+@border-size: 2PX;
+
+.home-page {
+  min-height: 100vh;
+  background: #fff url("../image/home/bg.png") no-repeat top center;
+  background-size: cover;
+
+  .nav {
+    height: 50px;
+    padding: 34px;
+    box-sizing: content-box;
+    margin-bottom: 30px;
+
+    .icon-back {
+      width: 22px;
+      height: 35px;
+      background: url("../image/home/icon-back.png") no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .icon {
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 16px;
+  }
+
+  .border {
+    width: @border-size;
+    height: 85px;
+    background-color: @border-color;
+  }
+
+  .scroll-box {
+    overflow-x: auto;
+  }
+
+  .app-item,
+  .brand-item {
+    width: 104px + 64px;
+    display: inline-block;
+  }
+
+  .app-item {
+    padding: 96px 10px 120px;
+    position: relative;
+
+    .border {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+
+      &.top {
+        top: 0;
+      }
+
+      &.bom {
+        display: none;
+      }
+    }
+
+    &.active {
+      .border.bom {
+        bottom: 0;
+        height: 95px;
+        display: block;
+
+        &::after {
+          content: "";
+          transform-origin: 0 17px;
+          width: 14px;
+          height: 14px;
+          border-width: @border-size 0 0 @border-size;
+          border-style: solid;
+          border-color: @border-color;
+          display: block;
+          transform: rotate(45deg) translate(-50%, 50%);
+          background-color: #fff;
+          bottom: 0;
+          left: 50%;
+          position: absolute;
+          z-index: 1;
+        }
+      }
+    }
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      height: @border-size;
+      top: 0;
+    }
+
+    &:not(:last-child)::after {
+      background-color: @border-color;
+      width: 50%;
+      right: 0;
+    }
+
+    &:not(:first-child)::before {
+      background-color: @border-color;
+      width: 50%;
+      left: 0;
+    }
+  }
+
+  .app-list {
+    margin-bottom: 40px;
+
+    &.active {
+      .app-item {
+        border-bottom: @border-size solid @border-color;
+      }
+    }
+  }
+}
