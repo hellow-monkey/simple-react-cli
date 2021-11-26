@@ -1,29 +1,27 @@
-import React from 'react'
-import Main from '@/layout/main'
-import Login from '@/page/login'
-import Home from '@/page/home'
+import React from "react";
+// import Main from "@/layout/main";
+// import Login from "@/page/login";
+// import Home from "@/page/home";
 
 const routes = [
   {
-    path: '/login',
+    path: "/login",
     exact: true,
-    title: '登录',
-    component: Login
+    title: "登录",
+    component: React.lazy(() => import("@/page/login")),
   },
   {
-    path: '/',
-    component: Main,
+    path: "/",
+    component: React.lazy(() => import("@/layout/main")),
     routes: [
       {
-        path: '/',
+        path: "/",
         exact: true,
-        title: '首页',
-        render (e) {
-          return <Home />
-        }
-      }
-    ]
-  }
-]
+        title: "首页",
+        component: React.lazy(() => import("@/page/home")),
+      },
+    ],
+  },
+];
 
-export default routes
+export default routes;

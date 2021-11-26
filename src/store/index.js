@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import { createModel } from 'hox'
+import { useState } from "react";
+import { createModel } from "hox";
 
-function useToken () {
-  const [token, setToken] = useState(null)
+function useToken() {
+  const [token, setToken] = useState(null);
   return {
     token,
-    setToken
-  }
+    setToken,
+  };
 }
 
-function useUser () {
-  const [user, setUser] = useState(null)
+function useUser() {
+  const [user, setUser] = useState(null);
   return {
     user,
-    setUser
-  }
+    setUser,
+  };
 }
 
-export const useTokenModel = createModel(useToken)
-export const useUserModel = createModel(useUser)
+export const useTokenModel = createModel(useToken);
+export const useUserModel = createModel(useUser);

@@ -17,18 +17,18 @@ ul {
 /** 滚动条 **/
 
 ::-webkit-scrollbar {
-  width: 8PX;
-  height: 8PX;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-corner {
   background-color: rgba($color: #000, $alpha: 0%);
-  border-radius: 8PX;
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 8PX;
+  border-radius: 8px;
   background-color: rgba($color: #000, $alpha: 20%);
 }
 
