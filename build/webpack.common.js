@@ -45,8 +45,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.(scss|sass)$/,
-        use: [...cssRules, "sass-loader"],
+        test: /\.less$/,
+        use: [...cssRules, "less-loader"],
       },
       {
         test: /\.css$/,
