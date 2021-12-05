@@ -1,25 +1,35 @@
-const autoprefixer = require("autoprefixer");
-
 module.exports = {
   plugins: {
-    "postcss-preset-env": {},
-    autoprefixer,
-    "postcss-px-to-viewport": {
-      unitToConvert: "px",
-      viewportWidth: 750,
+    "postcss-preset-env": {
+      browsers: `last 2 versions`,
+      stage: 0,
+    },
+    "postcss-pxtorem": {
+      rootValue: 26,
       unitPrecision: 5,
       propList: ["*"],
-      viewportUnit: "vw",
-      fontViewportUnit: "vw",
       selectorBlackList: [],
-      minPixelValue: 1,
+      replace: true,
       mediaQuery: false,
-      replace: false,
-      exclude: undefined,
-      include: undefined,
-      landscape: false,
-      landscapeUnit: "vw",
-      landscapeWidth: 568,
+      minPixelValue: 0,
+      exclude: /node_modules/i,
     },
+    // "postcss-px-to-viewport": {
+    //   unitToConvert: "px",
+    //   viewportWidth: 750,
+    //   unitPrecision: 5,
+    //   propList: ["*"],
+    //   viewportUnit: "vw",
+    //   fontViewportUnit: "vw",
+    //   selectorBlackList: [],
+    //   minPixelValue: 1,
+    //   mediaQuery: false,
+    //   replace: false,
+    //   exclude: undefined,
+    //   include: undefined,
+    //   landscape: false,
+    //   landscapeUnit: "vw",
+    //   landscapeWidth: 568,
+    // },
   },
 };

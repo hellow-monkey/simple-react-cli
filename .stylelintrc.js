@@ -6,5 +6,8 @@ module.exports = {
     "font-family-name-quotes": null,
     "font-family-no-missing-generic-family-keyword": null,
     "unit-case": null,
+    "unit-no-unknown": null,
+    "alpha-value-notation": null,
+    "selector-class-pattern": null,
   },
 };
