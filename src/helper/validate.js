@@ -49,8 +49,3 @@ export const isIE = (() => !!window.ActiveXObject || "ActiveXObject" in window)(
 export const isIos = (() => /(iPhone|iPad|iPod|iOS|Safari)/i.test(navigator.userAgent))();
 // 判断是不是Android
 export const isAndroid = (() => /(Android)/i.test(navigator.userAgent))();
-
-// 判断有没有打开Drawer-link
-export const isOpenDrawerLink = () => {
-  return document.querySelector(".ant-drawer-body .app-layout");
-};

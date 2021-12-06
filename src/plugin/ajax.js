@@ -1,6 +1,6 @@
 import flyio from "flyio";
 import config from "@/config";
-import { useTokenModel } from "@/store";
+import { useTokenModel } from "@/store/user";
 
 // request拦截器
 flyio.interceptors.request.use((conf) => {

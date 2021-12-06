@@ -6,28 +6,15 @@
 }
 
 $unit-width: 750;
-$unit-size: 26;
+$unit-size: 16;
 
 html {
   font-size: (100 / $unit-width * $unit-size) + vw;
 }
 
-@media (max-width: #{$unit-width / 2 }PX) {
-  html {
-    font-size: #{$unit-size / 2}PX;
-  }
-}
-
 @media (min-width: #{$unit-width}PX) {
   html {
-    font-size: #{$unit-size}PX;
-  }
-
-  .container {
-    width: #{$unit-width}PX;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: hidden;
+    font-size: ($unit-size) + PX;
   }
 }
 

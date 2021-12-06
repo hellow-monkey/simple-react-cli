@@ -26,14 +26,14 @@ module.exports = {
   output: {
     path: path.resolve(appDirectory, "dist"),
     publicPath: "/",
-    filename: "bundle.[contenthash].js",
-    chunkFilename: "script/[chunkhash:8].[contenthash].js",
+    filename: "script/[name].[contenthash:8].bundle.js",
+    chunkFilename: "script/[name].[contenthash:8].chunk.js",
     clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(jsx?|tsx?)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -55,6 +55,9 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff|woff2?)$/,
         type: "asset/resource",
+        generator: {
+          filename: "font/[hash:8].[contenthash:8][ext]",
+        },
       },
       {
         test: /\.(gif|png|jpe?g|svg|webp)$/i,
@@ -63,6 +66,9 @@ module.exports = {
           dataUrlCondition: {
             maxSize: 4 * 1024, // 4kb
           },
+        },
+        generator: {
+          filename: "image/[hash:8].[contenthash:8][ext]",
         },
       },
     ],
@@ -134,7 +140,7 @@ module.exports = {
   ],
   resolve: {
     modules: [path.resolve(appDirectory, "node_modules")],
-    extensions: [".js", ".jsx", "*"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", "*"],
     mainFields: ["browser", "jsnext:main", "main"],
     alias: {
       "@": path.resolve(appDirectory, "src"),

@@ -9,5 +9,6 @@ module.exports = {
     "unit-no-unknown": null,
     "alpha-value-notation": null,
     "selector-class-pattern": null,
+    "value-keyword-case": null,
   },
 };
