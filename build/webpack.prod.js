@@ -1,7 +1,8 @@
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+// const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const WebpackBar  = require("webpackbar");
 
 module.exports = merge(common, {
   mode: "production",
@@ -12,7 +13,8 @@ module.exports = merge(common, {
       chunkFilename: "style/[name].[contenthash:8].chunk.css",
       ignoreOrder: true,
     }),
-    new ProgressBarPlugin(),
+    // new ProgressBarPlugin(),
+    new WebpackBar()
   ],
   stats: "normal",
 });

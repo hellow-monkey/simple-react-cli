@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const appDirectory = fs.realpathSync(process.cwd());
 const isDev = process.env.NODE_ENV === "development";
@@ -137,6 +138,21 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: "react",
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          context: path.resolve(appDirectory, './public'),
+          from: '*',
+          to: path.resolve(appDirectory, './dist'),
+          toType: 'dir',
+          globOptions: {
+            dot: true,
+            gitignore: true,
+            ignore: ['**/index.html'],
+          },
+        },
+      ],
+    }),  
   ],
   resolve: {
     modules: [path.resolve(appDirectory, "node_modules")],
