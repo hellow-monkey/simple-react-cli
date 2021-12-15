@@ -21,6 +21,8 @@ module.exports = {
   rules: {
     "react/react-in-jsx-scope": 0,
     "react/prop-types": 0,
+    "no-useless-escape": 0,
+    "no-prototype-builtins": 0,
   },
   settings: {
     "import/resolver": {

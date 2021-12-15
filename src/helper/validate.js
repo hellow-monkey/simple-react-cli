@@ -2,14 +2,25 @@ export const isEmpty = (data) => {
   return data === "" || data === null || data === undefined || (typeof data === "number" && isNaN(data));
 };
 
-// 是不是链接
-export const isUrl = (url) => {
-  return /^https?:\/\/.+/.test(url);
+export const isRealEmpty = (data) => {
+  return (
+    isEmpty(data) || (Array.isArray(data) && !data.length) || (typeof data === "object" && !Object.keys(data).length)
+  );
 };
 
-// 是不是小程序地址
-export const isMiniPath = (path = "") => {
-  return /^\/?pages\/\w.+?\/\w.+?\/\w.+?/.test(path);
+// 是不是链接
+export const isUrl = (url) => {
+  return /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(url);
+};
+
+// 是不是email
+export const isEmail = (data) => {
+  return /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(data);
+};
+
+// 是不是身份证号
+export const isIdcard = (data) => {
+  return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(data);
 };
 
 // 车牌号的正则

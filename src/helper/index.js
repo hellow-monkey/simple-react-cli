@@ -1,5 +1,6 @@
 import { isNumberLike, isEmpty, isUrl } from "@/helper/validate";
 
+// 加零
 export const addZero = (num) => {
   num = Number(Number(num));
   if (num < 10) {
@@ -8,6 +9,7 @@ export const addZero = (num) => {
   return String(num);
 };
 
+// 对象值处理
 export const filterObject = (obj = {}, transformNum = false) => {
   const params = {};
   for (const key in obj) {
@@ -104,15 +106,18 @@ export const getFullUrl = (...urls) => {
   return arr.join("/");
 };
 
+// 获取数据类型
 export const getType = (item) => {
   const str = Object.prototype.toString.call(item);
   return str.substring(8, str.length - 1).toLocaleLowerCase();
 };
 
+// 随机数
 export const random = (n, m) => {
   return Math.floor(Math.random() * (m - n + 1) + n);
 };
 
+// 随机字符串
 const stringTemplate = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
 export const randomString = (length = 6) => {
   let str = "";
@@ -123,27 +128,22 @@ export const randomString = (length = 6) => {
 };
 
 // 深度拷贝
-export const deepEachObjClone = (obj) => {
-  const type = getType(obj);
-  let temp = obj;
-  if (typeof obj === "object") {
-    if (type === "array") {
-      temp = [];
-      obj.map((item, i) => temp.push(deepEachObjClone(item)));
-    } else if (type === "object") {
-      temp = {};
-      for (const _name in obj) {
-        // 忽略掉原型链上的属性
-        // eslint-disable-next-line no-prototype-builtins
-        if (obj.hasOwnProperty(_name)) {
-          temp[_name] = deepEachObjClone(obj[_name]);
-        }
-      }
+export const deepEachObjClone = (obj, cache = new WeakMap()) => {
+  if (typeof obj !== "object") return obj; // 普通类型，直接返回
+  if (obj === null) return obj;
+  if (cache.get(obj)) return cache.get(obj); // 防止循环引用，程序进入死循环
+  if (obj instanceof Date) return new Date(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
+
+  // 找到所属原型上的constructor，所属原型上的constructor指向当前对象的构造函数
+  const cloneObj = new obj.constructor();
+  cache.set(obj, cloneObj); // 缓存拷贝的对象，用于处理循环引用的情况
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      cloneObj[key] = deepEachObjClone(obj[key], cache); // 递归拷贝
     }
-  } else {
-    return temp;
   }
-  return temp;
+  return cloneObj;
 };
 
 // 获取指定目录的js内容
@@ -189,12 +189,27 @@ export const fileToBase64 = (file) => {
   });
 };
 
-// 字符串隐藏
-export const concealStr = (str = "", firstLength = 3, lastLength = 4) => {
-  if (!str || str.length <= firstLength + lastLength) {
-    return str;
-  }
-  const reg = new RegExp(`^([\\d\\w]{${firstLength}})[\\d\\w]+([\\d\\w]{${lastLength}})$`, "g");
-  const repeatStr = "*".repeat(str.length - firstLength - lastLength);
-  return String(str).trim().replace(reg, `$1${repeatStr}$2`);
+// 防抖
+export const debounce = (fn, delay) => {
+  let timer;
+  return function (...args) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+};
+
+// 节流
+export const throttle = (fn, delay) => {
+  let last = 0; // 上次触发时间
+  return (...args) => {
+    const now = Date.now();
+    if (now - last > delay) {
+      last = now;
+      fn.apply(this, args);
+    }
+  };
 };
