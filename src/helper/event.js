@@ -14,7 +14,7 @@ export default class EventEmitter {
   off(name, fn) {
     const tasks = this.cache[name];
     if (tasks) {
-      const index = tasks.findIndex((f) => f === fn || f.callback === fn);
+      const index = tasks.findIndex(f => f === fn || f.callback === fn);
       if (index >= 0) {
         tasks.splice(index, 1);
       }

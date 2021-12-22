@@ -1,7 +1,7 @@
 import { isNumberLike, isEmpty, isUrl } from "@/helper/validate";
 
 // 加零
-export const addZero = (num) => {
+export const addZero = num => {
   num = Number(Number(num));
   if (num < 10) {
     num = "0" + num;
@@ -70,7 +70,7 @@ export const parseParams = (str = window.location.href) => {
     return params;
   }
   const paramsArr = query.split("&");
-  paramsArr.forEach((item) => {
+  paramsArr.forEach(item => {
     const arrs = item.split("=");
     params[arrs[0]] = arrs[1];
   });
@@ -102,12 +102,12 @@ export const getFullUrl = (...urls) => {
       });
     }
   });
-  const arr = urls.filter((v) => !!v).map((v) => v.replace(/\/$/, "").replace(/^\//, ""));
+  const arr = urls.filter(v => !!v).map(v => v.replace(/\/$/, "").replace(/^\//, ""));
   return arr.join("/");
 };
 
 // 获取数据类型
-export const getType = (item) => {
+export const getType = item => {
   const str = Object.prototype.toString.call(item);
   return str.substring(8, str.length - 1).toLocaleLowerCase();
 };
@@ -120,11 +120,7 @@ export const random = (n, m) => {
 // 随机字符串
 const stringTemplate = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
 export const randomString = (length = 6) => {
-  let str = "";
-  for (let i = 0; i < length; i++) {
-    str += stringTemplate[random(0, stringTemplate.length - 1)];
-  }
-  return str;
+  return new Array(length).map(() => stringTemplate[random(0, stringTemplate.length - 1)]).join("");
 };
 
 // 深度拷贝
@@ -146,17 +142,8 @@ export const deepEachObjClone = (obj, cache = new WeakMap()) => {
   return cloneObj;
 };
 
-// 获取指定目录的js内容
-export const getFileModule = (files) => {
-  const modules = {};
-  files.keys().forEach((key) => {
-    modules[key.replace(/(\.\/|\.js)/g, "")] = files(key).default;
-  });
-  return modules;
-};
-
 // 将base64转换为file
-export const base64ToFile = (dataurl) => {
+export const base64ToFile = dataurl => {
   const base64Prefix = "data:image/png;base64,";
   if (!/^data:image\/.+;base64,/.test(dataurl)) {
     dataurl = base64Prefix + dataurl;
@@ -178,14 +165,14 @@ export const base64ToFile = (dataurl) => {
 };
 
 // file转base64
-export const fileToBase64 = (file) => {
+export const fileToBase64 = file => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (e) => {
+    reader.onload = e => {
       resolve(reader.result);
     };
-    reader.onerror = (error) => reject(error);
+    reader.onerror = error => reject(error);
   });
 };
 

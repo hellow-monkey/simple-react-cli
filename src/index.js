@@ -1,3 +1,4 @@
+import "@/extend";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { renderRoutes } from "@/helper/router";

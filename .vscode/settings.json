@@ -11,5 +11,20 @@
     "typescriptreact",
     "html",
     "vue"
-  ]
+  ],
+  "stylelint.snippet": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "sass"
+  ],
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "sass"
+  ],
+  "files.eol": "\n"
 }

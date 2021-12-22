@@ -1,13 +1,26 @@
 import flyio from "flyio";
 import config from "@/config";
 import { useTokenModel } from "@/store/user";
+import { filterObject, getType } from "@/helper";
+import { isRealEmpty } from "@/helper/validate";
 
 // request拦截器
-flyio.interceptors.request.use((conf) => {
+flyio.interceptors.request.use(conf => {
   conf.baseURL = config.baseURL;
   conf.headers["Content-Type"] = "application/json;charset=UTF-8";
-  conf.headers.token = useTokenModel.data.token;
   conf.timeout = 0;
+  const { token } = useTokenModel.data;
+  if (token) {
+    conf.headers.token = token;
+  }
+  // 参数处理
+  if (conf.body && getType(conf.body) === "object") {
+    let { __filterEmpty = 1, ...query } = conf.body;
+    if (__filterEmpty) {
+      query = filterObject(query);
+    }
+    conf.body = isRealEmpty(query) ? undefined : query;
+  }
   return conf;
 });
 
@@ -15,13 +28,13 @@ flyio.interceptors.request.use((conf) => {
 flyio.interceptors.response.use(
   ({ data }) => {
     const status = Number(data.status);
-    if (status !== 200) {
+    if (status !== config.successCode) {
       alert(data.message);
       return Promise.reject(data);
     }
     return data;
   },
-  (error) => {
+  error => {
     // 这里是返回状态码不为200时候的错误处理
     const messages = {
       400: "请求错误",

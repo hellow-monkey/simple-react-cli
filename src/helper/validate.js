@@ -1,53 +1,51 @@
-export const isEmpty = (data) => {
+export const isEmpty = data => {
   return data === "" || data === null || data === undefined || (typeof data === "number" && isNaN(data));
 };
 
-export const isRealEmpty = (data) => {
-  return (
-    isEmpty(data) || (Array.isArray(data) && !data.length) || (typeof data === "object" && !Object.keys(data).length)
-  );
+export const isRealEmpty = data => {
+  return isEmpty(data) || (Array.isArray(data) && !data.length) || (typeof data === "object" && !Object.keys(data).length);
 };
 
 // 是不是链接
-export const isUrl = (url) => {
+export const isUrl = url => {
   return /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(url);
 };
 
 // 是不是email
-export const isEmail = (data) => {
+export const isEmail = data => {
   return /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(data);
 };
 
 // 是不是身份证号
-export const isIdcard = (data) => {
+export const isIdcard = data => {
   return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(data);
 };
 
 // 车牌号的正则
-export const isCarNumber = (carNumber) => {
-  if (typeof carNumber !== "string") {
+export const isCarNumber = data => {
+  if (typeof data !== "string") {
     return false;
   }
   const regExp =
     /^([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Za-z]{1}[A-Za-z]{1}(([0-9]{5}[DFdf])|([DFdf]([A-HJ-NP-Za-hj-np-z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Za-z]{1}[A-Za-z]{1}[A-HJ-NP-Za-hj-np-z0-9]{4}[A-HJ-NP-Za-hj-np-z0-9挂学警港澳]{1})$/;
-  return regExp.test(carNumber);
+  return regExp.test(data);
 };
 
 // 手机号码的正则
-export const isPhoneNumber = (phone) => {
+export const isPhoneNumber = data => {
   const regExp = /^[1]([3-9])[0-9]{9}$/;
-  return regExp.test(phone);
+  return regExp.test(data);
 };
 
 // 是不是数字
-export const isNumberLike = (data) => {
+export const isNumberLike = data => {
   return /^[\d]+$/g.test(data) && Number(data) < Number.MAX_SAFE_INTEGER;
 };
 
 // json字符串
-export const isJsonString = (str) => {
+export const isJsonString = data => {
   try {
-    if (typeof JSON.parse(str) === "object") {
+    if (typeof JSON.parse(data) === "object") {
       return true;
     }
   } catch (e) {}

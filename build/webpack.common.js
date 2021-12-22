@@ -142,7 +142,7 @@ module.exports = {
       patterns: [
         {
           context: path.resolve(appDirectory, './public'),
-          from: '*',
+          from: '**',
           to: path.resolve(appDirectory, './dist'),
           toType: 'dir',
           globOptions: {

@@ -12,7 +12,7 @@ export function renderRoutes(routes, extraProps = {}, switchProps = {}) {
             path={route.path}
             exact={route.exact}
             strict={route.strict}
-            render={(props) => {
+            render={props => {
               if (!isEmpty(route.title)) {
                 document.title = String(route.title);
               }

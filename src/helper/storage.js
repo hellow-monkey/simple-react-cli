@@ -37,7 +37,7 @@ const fn = (storage = s) => {
     has(key, id, val) {
       const data = this.get(key);
       if (Array.isArray(data)) {
-        return data.filter((item) => item[id] === val).length > 0;
+        return data.filter(item => item[id] === val).length > 0;
       }
       return false;
     },
