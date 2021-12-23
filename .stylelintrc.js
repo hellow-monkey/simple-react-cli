@@ -1,8 +1,9 @@
 module.exports = {
   "plugins": [
+    'stylelint-declaration-block-no-ignored-properties',
     "stylelint-scss"
   ],
-  extends: ["stylelint-config-standard"],
+  extends: ['stylelint-config-standard'],
   rules: {
     "declaration-block-no-duplicate-properties": null,
     "no-invalid-double-slash-comments": null,

@@ -1,7 +1,8 @@
+import { FunType, ObjType } from "@/config/type";
 import { isNumberLike, isEmpty, isUrl } from "@/helper/validate";
 
 // 加零
-export const addZero = num => {
+export const addZero = (num: number | string): string => {
   num = Number(Number(num));
   if (num < 10) {
     num = "0" + num;
@@ -9,9 +10,15 @@ export const addZero = num => {
   return String(num);
 };
 
+// 获取数据类型
+export const getType = (item: any): string => {
+  const str = Object.prototype.toString.call(item);
+  return str.substring(8, str.length - 1).toLocaleLowerCase();
+};
+
 // 对象值处理
-export const filterObject = (obj = {}, transformNum = false) => {
-  const params = {};
+export const filterObject = (obj: ObjType = {}, transformNum = false) => {
+  const params: ObjType = {};
   for (const key in obj) {
     let data = obj[key];
     if (!isEmpty(data)) {
@@ -28,7 +35,7 @@ export const filterObject = (obj = {}, transformNum = false) => {
 };
 
 // 路由参数过滤
-export const filterParams = (query = {}) => {
+export const filterParams = (query: ObjType = {}) => {
   const data = filterObject(query, true);
   for (const key in data) {
     query[key] = data[key];
@@ -37,7 +44,7 @@ export const filterParams = (query = {}) => {
 };
 
 // 参数对象转参数字符串
-export const stringifyParams = (obj = {}, strict = true) => {
+export const stringifyParams = (obj: ObjType = {}, strict = true): string => {
   const arr = [];
   let str = "";
   if (strict) {
@@ -63,7 +70,7 @@ export const stringifyParams = (obj = {}, strict = true) => {
 
 // 链接转参数对象
 export const parseParams = (str = window.location.href) => {
-  const params = {};
+  const params: ObjType = {};
   const arr = str.split("?");
   const query = arr[1];
   if (!query) {
@@ -78,7 +85,7 @@ export const parseParams = (str = window.location.href) => {
 };
 
 // 追加链接参数
-export const putParams = (url = "", putParams = {}) => {
+export const putParams = (url = "", putParams = {}): string => {
   const oldParams = parseParams(url);
   const path = url.split("?")[0];
   // 去除原有参数
@@ -94,7 +101,7 @@ export const putParams = (url = "", putParams = {}) => {
 };
 
 // 合并链接
-export const getFullUrl = (...urls) => {
+export const getFullUrl = (...urls: string[]): string => {
   urls.slice(1).forEach((value, index) => {
     if (isUrl(value)) {
       urls.slice(0, index + 1).forEach((v, k) => {
@@ -106,14 +113,8 @@ export const getFullUrl = (...urls) => {
   return arr.join("/");
 };
 
-// 获取数据类型
-export const getType = item => {
-  const str = Object.prototype.toString.call(item);
-  return str.substring(8, str.length - 1).toLocaleLowerCase();
-};
-
 // 随机数
-export const random = (n, m) => {
+export const random = (n: number, m: number) => {
   return Math.floor(Math.random() * (m - n + 1) + n);
 };
 
@@ -124,7 +125,7 @@ export const randomString = (length = 6) => {
 };
 
 // 深度拷贝
-export const deepEachObjClone = (obj, cache = new WeakMap()) => {
+export const deepEachObjClone = (obj: any, cache = new WeakMap()) => {
   if (typeof obj !== "object") return obj; // 普通类型，直接返回
   if (obj === null) return obj;
   if (cache.get(obj)) return cache.get(obj); // 防止循环引用，程序进入死循环
@@ -143,7 +144,7 @@ export const deepEachObjClone = (obj, cache = new WeakMap()) => {
 };
 
 // 将base64转换为file
-export const base64ToFile = dataurl => {
+export const base64ToFile = (dataurl: string): File => {
   const base64Prefix = "data:image/png;base64,";
   if (!/^data:image\/.+;base64,/.test(dataurl)) {
     dataurl = base64Prefix + dataurl;
@@ -165,11 +166,11 @@ export const base64ToFile = dataurl => {
 };
 
 // file转base64
-export const fileToBase64 = file => {
+export const fileToBase64 = (file: File): Promise<FileReader["result"]> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = e => {
+    reader.onload = () => {
       resolve(reader.result);
     };
     reader.onerror = error => reject(error);
@@ -177,9 +178,9 @@ export const fileToBase64 = file => {
 };
 
 // 防抖
-export const debounce = (fn, delay) => {
-  let timer;
-  return function (...args) {
+export const debounce = (fn: FunType, delay: number) => {
+  let timer: NodeJS.Timeout;
+  return function (...args: any[]) {
     if (timer) {
       clearTimeout(timer);
     }
@@ -190,9 +191,9 @@ export const debounce = (fn, delay) => {
 };
 
 // 节流
-export const throttle = (fn, delay) => {
+export const throttle = (fn: FunType, delay: number) => {
   let last = 0; // 上次触发时间
-  return (...args) => {
+  return (...args: any[]) => {
     const now = Date.now();
     if (now - last > delay) {
       last = now;

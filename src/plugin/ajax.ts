@@ -3,6 +3,7 @@ import config from "@/config";
 import { useTokenModel } from "@/store/user";
 import { filterObject, getType } from "@/helper";
 import { isRealEmpty } from "@/helper/validate";
+import { KeyType } from "@/config/type";
 
 // request拦截器
 flyio.interceptors.request.use(conf => {
@@ -34,9 +35,12 @@ flyio.interceptors.response.use(
     }
     return data;
   },
-  error => {
+  (error: any) => {
+    type Message = {
+      [prop: KeyType]: string;
+    };
     // 这里是返回状态码不为200时候的错误处理
-    const messages = {
+    const messages: Message = {
       400: "请求错误",
       401: "未授权，请登录",
       403: "拒绝访问",
@@ -50,7 +54,7 @@ flyio.interceptors.response.use(
       505: "HTTP版本不受支持",
     };
     let message = error?.response?.data?.message;
-    if (!message) {
+    if (!message && error.status) {
       message = messages[error.status];
     }
     alert(message);

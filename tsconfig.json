@@ -12,6 +12,7 @@
       "@/*": ["./src/*"],
       "~/*": ["./node_modules/*"]
     },
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   }
 }

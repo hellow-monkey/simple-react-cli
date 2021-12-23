@@ -1,8 +1,8 @@
 const defaultXor = 125;
 const defaultHex = 25;
-export function encrypto(str, xor = defaultXor, hex = defaultHex) {
+export function encrypto(str: string, xor = defaultXor, hex = defaultHex): string {
   if (typeof str !== "string" || typeof xor !== "number" || typeof hex !== "number") {
-    return;
+    return "";
   }
 
   const resultList = [];
@@ -14,8 +14,8 @@ export function encrypto(str, xor = defaultXor, hex = defaultHex) {
     // 进行异或加密
     charCode = (charCode * 1) ^ xor;
     // 异或加密后的字符转成 hex 位数的字符串
-    charCode = charCode.toString(hex);
-    resultList.push(charCode);
+    const newCode = charCode.toString(hex);
+    resultList.push(newCode);
   }
 
   const splitStr = String.fromCharCode(hex + 97);
@@ -23,9 +23,9 @@ export function encrypto(str, xor = defaultXor, hex = defaultHex) {
   return resultStr;
 }
 
-export function decrypto(str, xor = defaultXor, hex = defaultHex) {
+export function decrypto(str: string, xor = defaultXor, hex = defaultHex): string {
   if (typeof str !== "string" || typeof xor !== "number" || typeof hex !== "number") {
-    return;
+    return "";
   }
   let strCharList = [];
   const resultList = [];

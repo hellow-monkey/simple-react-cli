@@ -1,28 +1,28 @@
-export const isEmpty = data => {
+export const isEmpty = (data: any) => {
   return data === "" || data === null || data === undefined || (typeof data === "number" && isNaN(data));
 };
 
-export const isRealEmpty = data => {
+export const isRealEmpty = (data: any) => {
   return isEmpty(data) || (Array.isArray(data) && !data.length) || (typeof data === "object" && !Object.keys(data).length);
 };
 
 // 是不是链接
-export const isUrl = url => {
+export const isUrl = (url: string) => {
   return /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(url);
 };
 
 // 是不是email
-export const isEmail = data => {
+export const isEmail = (data: string) => {
   return /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(data);
 };
 
 // 是不是身份证号
-export const isIdcard = data => {
+export const isIdcard = (data: string) => {
   return /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(data);
 };
 
 // 车牌号的正则
-export const isCarNumber = data => {
+export const isCarNumber = (data: string) => {
   if (typeof data !== "string") {
     return false;
   }
@@ -32,18 +32,18 @@ export const isCarNumber = data => {
 };
 
 // 手机号码的正则
-export const isPhoneNumber = data => {
+export const isPhoneNumber = (data: string) => {
   const regExp = /^[1]([3-9])[0-9]{9}$/;
   return regExp.test(data);
 };
 
 // 是不是数字
-export const isNumberLike = data => {
+export const isNumberLike = (data: string) => {
   return /^[\d]+$/g.test(data) && Number(data) < Number.MAX_SAFE_INTEGER;
 };
 
 // json字符串
-export const isJsonString = data => {
+export const isJsonString = (data: string) => {
   try {
     if (typeof JSON.parse(data) === "object") {
       return true;
