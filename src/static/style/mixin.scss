@@ -1,4 +1,20 @@
 @mixin offset($unit, $offset) {
+  .pos-t-#{$unit} {
+    top: $offset;
+  }
+
+  .pos-r-#{$unit} {
+    right: $offset;
+  }
+
+  .pos-b-#{$unit} {
+    bottom: $offset;
+  }
+
+  .pos-l-#{$unit} {
+    left: $offset;
+  }
+
   .pad-#{$unit} {
     padding: $offset;
   }

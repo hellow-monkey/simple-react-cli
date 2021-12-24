@@ -19,6 +19,7 @@ html {
 @include offset(5, var(--offset-5));
 @include offset(6, var(--offset-6));
 @include offset(7, var(--offset-7));
+@include offset(0, 0);
 
 /** 滚动条 **/
 @media (min-width: #{$mobile-breakpoint}PX) {
@@ -187,6 +188,22 @@ a {
 
 .pos-sticky {
   position: sticky;
+}
+
+.pos-v-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pos-h-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pos-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .float-left {

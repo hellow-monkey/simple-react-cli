@@ -7,7 +7,9 @@
     "dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js",
     "serve": "cross-env NODE_ENV=development node ./build/serve.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
-    "lint": "eslint --fix src"
+    "lint": "npm run eslint && npm run stylelint",
+    "eslint": "eslint --fix src/**/*.{js,ts}",
+    "stylelint": "stylelint --fix src/**/*.{scss,sass,css,less}"
   },
   "author": "",
   "license": "ISC",
@@ -63,6 +65,7 @@
     "style-loader": "^3.3.1",
     "stylelint": "^14.1.0",
     "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-scss": "^4.0.0",
     "terser-webpack-plugin": "^5.2.5",

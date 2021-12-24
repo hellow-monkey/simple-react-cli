@@ -1,4 +1,4 @@
-import { KeyType } from "@/config/type";
+import { KeyType, ObjType } from "@/config/type";
 import { isJsonString } from "@/helper/validate";
 
 const s = window.sessionStorage;
@@ -6,7 +6,7 @@ const l = window.localStorage;
 
 const fn = (storage = s) => {
   return {
-    get(key: string) {
+    get(key: string): string | ObjType {
       let data = storage.getItem(key);
       if (isJsonString(data)) {
         data = JSON.parse(data);
