@@ -29,6 +29,7 @@ module.exports = {
     "react/jsx-uses-react": 0,
     "no-use-before-define": 0,
     "import/no-unresolved": 0,
+    "@typescript-eslint/no-var-requires": 0,
   },
   settings: {
     "import/resolver": {

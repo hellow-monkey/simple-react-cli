@@ -1,6 +1,4 @@
 const { merge } = require("webpack-merge");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 const common = require("./webpack.common");
 
 const webpackConfig = merge(common, {
@@ -19,12 +17,13 @@ const webpackConfig = merge(common, {
     port: "auto",
     host: "0.0.0.0",
     client: {
-      logging: "none",
+      logging: "error",
       progress: true,
       overlay: true,
+      reconnect: true,
     },
   },
-  plugins: [new FriendlyErrorsWebpackPlugin(), new ErrorOverlayPlugin()],
+  // plugins: [],
 });
 
 module.exports = webpackConfig;

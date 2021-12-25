@@ -127,7 +127,7 @@ module.exports = {
       },
     },
     runtimeChunk: {
-      name: (entrypoint) => `runtime-${entrypoint.name}`,
+      name: entrypoint => `runtime-${entrypoint.name}`,
     },
   },
   plugins: [
@@ -141,18 +141,18 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          context: path.resolve(appDirectory, './public'),
-          from: '**',
-          to: path.resolve(appDirectory, './dist'),
-          toType: 'dir',
+          context: path.resolve(appDirectory, "./public"),
+          from: "**",
+          to: path.resolve(appDirectory, "./dist"),
+          toType: "dir",
           globOptions: {
             dot: true,
             gitignore: true,
-            ignore: ['**/index.html'],
+            ignore: ["**/index.html"],
           },
         },
       ],
-    }),  
+    }),
   ],
   resolve: {
     modules: [path.resolve(appDirectory, "node_modules")],
